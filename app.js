@@ -1,13 +1,13 @@
 const http = require("http");
 const fs = require("fs");
  
-http.createServer(function(request, response){
+http.createServer((req, res)=>{
      
-    fs.readFile("index.html", "utf8", function(error, data){
+    fs.readFile("index.html", "utf8", (e, data)=>{
                  
-        let message = "Изучаем Node.js"; 
-        let header = "Главная страница";
+        let message = "Hello my friend"; 
+        let header = "It's main page";
         data = data.replace("{header}", header).replace("{message}", message);
-        response.end(data);
+        res.end(data);
     })
 }).listen(3000);
