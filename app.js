@@ -1,12 +1,13 @@
-let nodePath = process.argv[0];
-let appPath = process.argv[1];
-let name = process.argv[2];
-let age = process.argv[3];
-
-console.log("nodePath: " + nodePath);
-console.log("appPath: " + appPath);
-console.log();
-console.log("name: " + name);
-console.log("age: " + age);
-
-// node app.js Tom 23
+const http = require("http");
+const fs = require("fs");
+ 
+http.createServer(function(request, response){
+     
+    fs.readFile("index.html", "utf8", function(error, data){
+                 
+        let message = "Изучаем Node.js"; 
+        let header = "Главная страница";
+        data = data.replace("{header}", header).replace("{message}", message);
+        response.end(data);
+    })
+}).listen(3000);
